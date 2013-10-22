@@ -4,7 +4,7 @@ set nocompatible
 
 " vundle
 filetype off
-set rtp+=~/.vim/bundle/vundle
+set rtp+=$HOME/.vim/bundle/vundle
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
