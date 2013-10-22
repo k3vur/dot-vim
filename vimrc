@@ -56,7 +56,11 @@ endif
 syntax on
 set t_Co=256           " terminal color 256
 set background=dark    " Dunkler Hintergrund
-colorscheme jellybeans
+try 
+  colorscheme jellybeans
+catch
+  " do nothing - this prevents the press ENTER to continue message
+endtry
 
 
 " interface
