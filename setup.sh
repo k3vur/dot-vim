@@ -30,11 +30,11 @@ if [ ! -f $HOME/.vimrc ]; then
 	ln -s $HOME/.vim/vimrc $HOME/.vimrc
 fi
 
-pushd .vim > /dev/null
+pushd $HOME/.vim > /dev/null
 
 echo
 echo "fetching vundle..."
-it submodule init
+git submodule init
 git submodule update
 
 echo
