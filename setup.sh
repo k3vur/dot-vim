@@ -1,5 +1,11 @@
 #!/usr/bin/env sh
 
+if ! which -s mvim; then
+	echo "error: mvim not found"
+	echo "install MacVim and try again"
+	exit 1
+fi
+
 if ! which -s git; then
 	echo "error: git not found"
 	echo "install git and try again"
@@ -13,10 +19,15 @@ git submodule update
 
 echo
 echo "installing vundle bundles"
-vim +BundleInstall +qall
+mvim -v +BundleInstall +qall
 
 echo
 echo "compiling YouCompleteMe..."
-pushd ./bundle/YouCompleteMe
+pushd ./bundle/YouCompleteMe > /dev/null
 ./install.sh --clang-completer
-popd
+popd > /dev/null
+
+echo
+echo "symlinking .vimrc"
+ln -s $HOME/.vim/vimrc $HOME/.vimrc
+
