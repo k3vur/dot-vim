@@ -18,6 +18,12 @@ if ! which -s git; then
 	exit 1
 fi
 
+if ! which -s cmake; then
+	echo "error: cmake not found (needed to compile YouCompleteMe plugin)"
+	echo "install cmake and try again"
+	exit 1
+fi
+
 if [ $(getAbsolutePath $0) != $HOME/.vim ]; then
 	echo "error: not installed into $HOME/.vim directory"
 	echo "move this directory to $HOME/.vim and try again"
