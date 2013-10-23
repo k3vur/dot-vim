@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-function getAbsolutePath() {
+function abs_path() {
 	pushd $(dirname $1) > /dev/null
 	echo $(PWD)
 	popd > /dev/null
@@ -24,10 +24,9 @@ if ! which -s cmake; then
 	exit 1
 fi
 
-if [ $(getAbsolutePath $0) != $HOME/.vim ]; then
-	echo "error: not installed into $HOME/.vim directory"
-	echo "move this directory to $HOME/.vim and try again"
-	exit 1
+DOT_VIM_PATH=$(abs_path $0)
+if [ $DOT_VIM_PATH != $HOME/.vim ]; then
+	ln -s $DOT_VIM_PATH $HOME/.vim
 fi
 
 if [ ! -f $HOME/.vimrc ]; then
