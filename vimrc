@@ -23,10 +23,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'Valloric/YouCompleteMe'
 
 " code snippets
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
-Bundle "honza/vim-snippets"
+Bundle 'SirVer/ultisnips'
 
 " color scheme
 Bundle 'nanotech/jellybeans.vim'
