@@ -113,7 +113,10 @@ au FileType tex set background=light
 au FileType tex nmap <Leader>m :!make<CR>
 
 " YCM
+" set default clang-completer configuration
 let g:ycm_global_ycm_extra_conf = '$HOME/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+" auto close preview windows on insertion
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " Keymappings
 let mapleader=','
