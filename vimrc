@@ -46,7 +46,6 @@ Bundle 'Keithbsmiley/investigate.vim'
 " I have no idea what it does, but important
 filetype plugin indent on
 
-
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
   set mouse=a
@@ -87,6 +86,7 @@ set backup                     " keep backups in /tmp
 set backupdir=/tmp
 set directory=/tmp
 set clipboard=unnamed          " yank to clipboard
+set history=500
 
 " make completion in :edit mode more bash-style
 set wildmenu
@@ -118,6 +118,10 @@ au FileType tex nmap <Leader>m :!make<CR>
 let g:ycm_global_ycm_extra_conf = '$HOME/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 " auto close preview windows on insertion
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" UltiSnips
+" UltiSnips trigger keymapping conflicts with YCM
+let g:UltiSnipsExpandTrigger = '<c-space>'
 
 " make investigate.vim use dash on osx
 nnoremap <leader>g :call investigate#Investigate()<CR>
