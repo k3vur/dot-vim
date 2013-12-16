@@ -40,6 +40,9 @@ Bundle 'Raimondi/delimitMate'
 " move stuff around
 Bundle 'matze/vim-move'
 
+" documentation plugin
+Bundle 'Keithbsmiley/investigate.vim'
+
 " I have no idea what it does, but important
 filetype plugin indent on
 
@@ -75,6 +78,7 @@ set ignorecase	" case-insensitive
 set smartcase	" case-SENSITIVE with capital letters
 
 " vim behavior
+let mapleader=','              " make , the leader key
 set autoindent	               " always set auto indenting on
 set nowrap	               " Don't break lines
 set autochdir                  " always use current directory
@@ -115,8 +119,11 @@ let g:ycm_global_ycm_extra_conf = '$HOME/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_
 " auto close preview windows on insertion
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
-" Keymappings
-let mapleader=','
+" make investigate.vim use dash on osx
+nnoremap <leader>g :call investigate#Investigate()<CR>
+if has('macunix')
+	let g:investigate_use_dash=1
+endif
 
 " lightline
 let g:lightline = {
