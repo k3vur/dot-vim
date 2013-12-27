@@ -43,6 +43,9 @@ Bundle 'matze/vim-move'
 " documentation plugin
 Bundle 'Keithbsmiley/investigate.vim'
 
+" git support
+Bundle 'tpope/vim-fugitive'
+
 " I have no idea what it does, but important
 filetype plugin indent on
 
@@ -71,10 +74,10 @@ set ruler        " show the cursor position all the time
 set showcmd      " display incomplete commands
 
 " Searching
-set hlsearch	" Search highlighting
-set incsearch	" do incremental searching
-set ignorecase	" case-insensitive
-set smartcase	" case-SENSITIVE with capital letters
+set hlsearch     " Search highlighting
+set incsearch    " do incremental searching
+set ignorecase   " case-insensitive
+set smartcase    " case-SENSITIVE with capital letters
 
 " vim behavior
 let mapleader=','              " make , the leader key
@@ -129,22 +132,62 @@ if has('macunix')
 	let g:investigate_use_dash=1
 endif
 
-" lightline
+
+"""""""""""""""""""""""""""
+" lightline configuration "
+"""""""""""""""""""""""""""
 let g:lightline = {
-    \ 'colorscheme': 'jellybeans',
-    \ 'active': {
-    \     'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype', 'syntastic']]
-    \ },
-    \ 'component_expand': {
-    \     'syntastic': 'SyntasticStatuslineFlat'
-    \ },
-    \ 'component_type': {
-    \      'syntastic': 'middle'
-    \ },
-    \ 'subseparator': {
-    \     'left': '|', 'right': '|'
-    \ }
-    \}
+      \ 'colorscheme': 'jellybeans',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'filename' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'MyFugitive',
+      \   'readonly': 'MyReadonly',
+      \   'modified': 'MyModified',
+      \   'filename': 'MyFilename'
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '|', 'right': '|' }
+      \ }
+
+function! MyModified()
+  if &filetype == "help"
+    return ""
+  elseif &modified
+    return "+"
+  elseif &modifiable
+    return ""
+  else
+    return ""
+  endif
+endfunction
+
+function! MyReadonly()
+  if &filetype == "help"
+    return ""
+  elseif &readonly
+    return "⭤"
+  else
+    return ""
+  endif
+endfunction
+
+function! MyFugitive()
+  return exists('*fugitive#head') ? fugitive#head() : ''
+endfunction
+
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+       \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+       \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+"""""""""""""""""""""""""""""""
+" end lightline configuration "
+"""""""""""""""""""""""""""""""
+
 
 " Insert date
 nmap <Leader>d 0!!date +\%Y-\%m-\%d<CR>
