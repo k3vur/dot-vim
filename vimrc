@@ -17,7 +17,11 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/syntastic'
 
 " file explorer
-Bundle 'scrooloose/nerdtree'
+"Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-vinegar'
+
+" Fuzzy file opening
+Bundle 'kien/ctrlp.vim'
 
 " auto complete
 Bundle 'Valloric/YouCompleteMe'
