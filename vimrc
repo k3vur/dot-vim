@@ -11,7 +11,7 @@ Bundle 'gmarik/vundle'
 " vim plugins
 
 " toggle comments
-Bundle 'scrooloose/nerdcommenter'
+Bundle 'tpope/vim-commentary'
 
 " syntax checker
 Bundle 'scrooloose/syntastic'
@@ -202,9 +202,9 @@ nnoremap <silent> <Leader>h :nohl<CR><Leader>h
 " NERDTree
 nmap <Leader>e :NERDTreeToggle<CR>
 
-" NERDcommenter
-nmap <D-7> <Leader>c<space>
-vmap <D-7> <Leader>c<space>
+" vim-commentary
+nmap <Leader>c gc
+vmap <Leader>c gc
 
 
 """""""""""""""
