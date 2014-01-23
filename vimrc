@@ -17,7 +17,6 @@ Bundle 'tpope/vim-commentary'
 Bundle 'scrooloose/syntastic'
 
 " file explorer
-"Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-vinegar'
 
 " Fuzzy file opening
@@ -199,8 +198,6 @@ nmap <Leader>d 0!!date +\%Y-\%m-\%d<CR>
 " un-highlight search matches
 nnoremap <silent> <Leader>h :nohl<CR><Leader>h
 
-" NERDTree
-nmap <Leader>e :NERDTreeToggle<CR>
 
 " vim-commentary
 nmap <Leader>c gc
