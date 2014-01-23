@@ -198,6 +198,8 @@ nmap <Leader>d 0!!date +\%Y-\%m-\%d<CR>
 " un-highlight search matches
 nnoremap <silent> <Leader>h :nohl<CR><Leader>h
 
+" open file under cursor with external program (OS X)
+nnoremap gO :!open <cfile><CR>
 
 " vim-commentary
 nmap <Leader>c gc
