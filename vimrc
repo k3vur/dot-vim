@@ -49,6 +49,13 @@ Bundle 'Keithbsmiley/investigate.vim'
 " git support
 Bundle 'tpope/vim-fugitive'
 
+" surround things with parenthesis, quotes, ...
+Bundle 'tpope/vim-surround'
+
+" for LaTeX writing
+Bundle 'junegunn/goyo.vim'
+Bundle 'junegunn/limelight.vim'
+
 " I have no idea what it does, but important
 filetype plugin indent on
 
@@ -115,25 +122,43 @@ endif " gui_running
 " Python 4 Spaces als Tab
 autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 
-" Bright scheme for LaTeX
-au FileType tex set background=light
-au FileType tex nmap <Leader>m :!make<CR>
+" LaTeX / rubber
+au FileType tex nmap <Leader>m :!rubber --pdf "`pwd`.tex"<CR>
+au FileType tex setlocal colorcolumn=80
 
-" YCM
+" YouCompleteMe
 " set default clang-completer configuration
 let g:ycm_global_ycm_extra_conf = '$HOME/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 " auto close preview windows on insertion
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
-" UltiSnips
-" UltiSnips trigger keymapping conflicts with YCM
-let g:UltiSnipsExpandTrigger = '<c-space>'
+let g:ycm_key_list_previous_completion=['<Up>']
+
+"" Ultisnips
+" work around UltiSnips / YCM hotkey conflict
+let g:UltiSnipsExpandTrigger='<c-j>'
+
 
 " make investigate.vim use dash on osx
 nnoremap <leader>g :call investigate#Investigate()<CR>
 if has('macunix')
 	let g:investigate_use_dash=1
 endif
+
+
+"""""""""""""
+" limelight "
+"""""""""""""
+
+function! GoyoBefore()
+	Limelight
+endfunction
+
+function! GoyoAfter()
+	Limelight!
+endfunction
+
+let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
 
 
 """""""""""""""""""""""""""
@@ -192,9 +217,6 @@ endfunction
 """""""""""""""""""""""""""""""
 
 
-" Insert date
-nmap <Leader>d 0!!date +\%Y-\%m-\%d<CR>
-
 " un-highlight search matches
 nnoremap <silent> <Leader>h :nohl<CR><Leader>h
 
@@ -204,6 +226,9 @@ nnoremap gO :!open <cfile><CR>
 " vim-commentary
 nmap <Leader>c gc
 vmap <Leader>c gc
+
+" better macros
+nnoremap <Space> @q
 
 
 """""""""""""""
